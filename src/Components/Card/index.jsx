@@ -13,7 +13,7 @@ const ContainerStyled = styled.div`
 `
 const CardStyled = styled.section`
     background-color: #14A06F;
-    width: 80%;
+    width: 75%;
     border-radius: 20px;
     margin: 0.3em;
     padding: 1.2em;
@@ -23,7 +23,7 @@ const CardStyled = styled.section`
     align-items: flex-start;
     font-size: 12px;
     color: #fff;
-    height: 135px;
+    height: 120px;
     box-sizing: content-box;
 `
 
@@ -32,7 +32,8 @@ const ImgPokemonStyled = styled.img`
     height: 70px;
     align-self: flex-end;
     position: relative;
-    top: -30px;
+    top: -35px;
+    right: 10px;
 `
 const Type = styled.ol`
     list-style: none;
