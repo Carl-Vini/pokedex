@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import pokemons from "./pokemon.json"
-
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { listaPokemon } from "./listaPokemon";
 
 
 const ContainerStyled = styled.div`
@@ -106,49 +106,36 @@ const Type = styled.ol`
 
 `
 
-// const offset = 0;
-// const limit = 10;
-// const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+function CardTest() {
 
+    const [pokemon, setPokemon] = useState([]);
 
-
-// console.log(listaPokemon)
-
-
-
-function Card() {
-        // const [dados, setDados] = useState([])
-
-        // useEffect(() => {
-        //     const fetchData = () => {
-        //         fetch(url)
-        //         .then(response => response.json)
-        //         .then(data => data.results)
-        //         .then(pokemons => setDados(pokemons))
-        //         .catch(error => console.log(error))
-        //     }
-        //     fetchData
-        // })
-   
+    useEffect(() => {
+        listaPokemon.getPokemons()
+            .then((pokemons) => {
+                setPokemon(pokemons)
+            })
+        console.log(pokemon)
+    }, [])
 
     return (
         <ContainerStyled>
             {
-                pokemons.map((pokemon) => (
-                    <CardStyled key={pokemon.id}>
-                        <Titulo> {pokemon.nome}  </Titulo>
+                pokemon.map((poke) => (
+                    <CardStyled key={poke.id}>
+                        <Titulo> {poke.name}  </Titulo>
                         <Type>
                             <li>
-                                {pokemon.type}
+                                {poke.name}
                             </li>
                             {
-                                pokemon.type2 &&   <li>
-                                {pokemon.type2}
-                            </li>
+                                poke.type2 && <li>
+                                    {poke.type2}
+                                </li>
                             }
-                          
+
                         </Type>
-                        <ImgPokemonStyled src={pokemon.img} alt={pokemon.nome} ></ImgPokemonStyled>
+                        <ImgPokemonStyled src={poke.img} alt={poke.name} ></ImgPokemonStyled>
                     </CardStyled>
                 ))
             }
@@ -156,4 +143,4 @@ function Card() {
     )
 }
 
-export default Card;
+export default CardTest;
