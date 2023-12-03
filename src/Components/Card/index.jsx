@@ -5,7 +5,9 @@ const ContainerStyled = styled.div`
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr;
-   
+    align-items: center;
+
+
     h1 {
         margin-bottom: 5px;
         margin-top: 50px;
@@ -13,7 +15,7 @@ const ContainerStyled = styled.div`
 `
 const CardStyled = styled.section`
     background-color: #14A06F;
-    width: 75%;
+    width: 65%;
     border-radius: 20px;
     margin: 0.3em;
     padding: 1.2em;

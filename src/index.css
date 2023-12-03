@@ -9,6 +9,9 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   padding: 0;
+  width: 100vw;
+  height: 100vh;  
+  box-sizing: border-box;
 }
 
 code {
