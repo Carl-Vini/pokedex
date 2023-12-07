@@ -1,6 +1,8 @@
 import Card from "./Components/Card";
 import styled from "styled-components";
 import CardTest from "./Components/Card/CardTest";
+import { completeList } from "./Components/Card/CompleteRequisição";
+import CardComplete from "./Components/Card/CardComplete";
 
 // import listaPokemon from "./Components/Card/listaPokemon";
 
@@ -21,14 +23,16 @@ const HeaderContainer = styled.header`
 // // .finally(() => console.log('requisição concluida'))
 
 // console.log(listaPokemon)
+console.log(completeList)
 
 function App() {
   return (
     <div className="App">
       <HeaderContainer >
       <h1>Pokedex</h1>
-      <Card />
-      <CardTest />
+      {/* <Card />
+      <CardTest /> */}
+      <CardComplete />
       </HeaderContainer>
     </div>
   );
