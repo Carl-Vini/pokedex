@@ -30,9 +30,10 @@ function App() {
     <div className="App">
       <HeaderContainer >
       <h1>Pokedex</h1>
-      {/* <Card />
-      <CardTest /> */}
+      {/* <Card />*/}
       <CardComplete />
+      {/* <CardTest />  */}
+      
       </HeaderContainer>
     </div>
   );

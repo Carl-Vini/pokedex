@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import styled from "styled-components";
+import pokemon from "./pokemon.json"
+import { Pokemon } from "./pokemonModel";
 
 
 const offset = 0;
@@ -49,7 +51,7 @@ const Titulo = styled.h1`
 
 
 const CardStyled = styled.section`
-    background-color: #14A06F;
+    background-color: #40a346;
     width: 75%;
     border-radius: 20px;
     margin: 0.3em;
@@ -63,6 +65,23 @@ const CardStyled = styled.section`
     height: 120px;
     box-sizing: content-box;
 
+  
+
+    &.fire {
+        background-color: #d11e48;
+    }
+
+    &.grass {
+        background-color: #b4df37;
+    }
+
+    &.water {
+        background-color: #60f0c0;
+    }
+
+    &.bug {
+        background-color: #5a2e2e;
+    }
     @media screen and (min-width:900px) {
         height: auto;
         width: 13vw;
@@ -73,6 +92,8 @@ const CardStyled = styled.section`
     }
 
 `
+
+
 
 const ImgPokemonStyled = styled.img`
     max-width: 100%;
@@ -101,10 +122,23 @@ const Type = styled.ol`
     
 
     li {
-        background-color: gray;
+        
         border-radius: 20px;
         padding: 8px 15px 8px 15px;
         text-align: center;
+    }
+
+    .fire {
+        background-color: #e84a5f;
+    }
+    .grass {
+        background-color: #c0cc39;
+    }  
+    .water{
+        background-color: #77cca4;
+    }
+    .bug {
+        background-color: #452c18;
     }
 
     @media screen and (min-width: 900px) {
@@ -116,29 +150,32 @@ const Type = styled.ol`
 
 function CardComplete() {
 
-    const [pokemon, setPokemon] = useState([])
+    // const [pokemon, setPokemon] = useState([])
     const [pokemonDetail, setPokemonDetail] = useState([])
 
-    let endPoints = [];
-    
+    const endPoints = [];
 
-    useEffect(() => {
-        fetch(http)
-            .then(response => response.json())
-            .then(data => {
-                setPokemon(data.results)
-            })
+ 
 
-    }, [])
+    for(let i = 1; i <= (limit); i++) {
+        endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+    }
+
+    // useEffect(() => {
+    //     fetch(http)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setPokemon(data.results)
+    //         })
+
+    // }, [])
 
      useEffect(() => {
         //  pokemon?.map((requi) => fetch(requi.url)
         //  .then(response => response.json()))
         // .then(requisitions => Promise.all(requisitions))
 
-        for(let i = 1; i < (limit + 1); i++) {
-            endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-        }
+        
         
         axios.all(endPoints.map(endPoint => axios.get(endPoint)))
         .then(res => setPokemonDetail(res))
@@ -147,28 +184,29 @@ function CardComplete() {
         // .then((res) => setPokemonDetail(res.data.results))
         // console.log(endPoints)
 
-     }, [pokemon])
+     }, [])
+
+   
 
 
-     console.log(pokemonDetail)
      
     return (
         <ContainerStyled>
             {
                 pokemonDetail.map((poke) => (
-                    <CardStyled key={poke.data.id}>
-                        <Titulo> {poke.data.name}  </Titulo>
-                        <Type>
-                            <li>
+                    <CardStyled key={poke.data.id} className={poke.data.types[0].type.name}>
+                        <Titulo > {poke.data.name}  </Titulo>
+                        <Type >
+                            <li className={poke.data.types[0].type.name}>
                                 { poke.data.types[0].type.name }
                             </li>
                             {
-                                poke.data.types[1] && <li>
+                                poke.data.types[1] && <li className={poke.data.types[0].type.name}>
                                     {poke.data.types[1].type.name}
                                 </li>
                             }
-                        </Type>
-                        <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.name} ></ImgPokemonStyled>
+                        </Type >
+                        <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.data.name} ></ImgPokemonStyled>
                     </CardStyled>
                 ))
             }
