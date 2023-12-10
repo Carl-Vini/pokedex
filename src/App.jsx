@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CardTest from "./Components/Card/CardTest";
 import { completeList } from "./Components/Card/CompleteRequisição";
 import CardComplete from "./Components/Card/CardComplete";
+import Navbar from "./Components/Navbar";
 
 // import listaPokemon from "./Components/Card/listaPokemon";
 
@@ -10,6 +11,7 @@ import CardComplete from "./Components/Card/CardComplete";
 
 const HeaderContainer = styled.header`
   text-align: center;
+  
 `
 
 // const offset = 0;
@@ -29,12 +31,11 @@ function App() {
   return (
     <div className="App">
       <HeaderContainer >
-      <h1>Pokedex</h1>
-      {/* <Card />*/}
-      <CardComplete />
-      {/* <CardTest />  */}
-      
+        <Navbar />
       </HeaderContainer>
+        {/* <Card />*/}
+        <CardComplete />
+        {/* <CardTest />  */}
     </div>
   );
 }
