@@ -1,48 +1,11 @@
 [
     {
 
-        "id": 1,
-        "nome" : "Bulbasaur",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"  ,
-        "type": "grass",
-        "type2": "poison"
-    },
-    {
-    
-        "id": 2,
-        "nome" : "Ivysaur",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"  ,
-        "type": "grass",
-        "type2": "poison"
-    },    {
-
-        "id": 3,
-        "nome" : "Venusaur",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"  ,
-        "type": "grass",
-        "type2": "poison"
-    },
-    {
-    
-        "id": 4,
-        "nome" : "Charmander",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg"  ,
-        "type": "fire"
-    },    {
-
-        "id": 5,
-        "nome" : "Chameleon",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg"  ,
-        "type": "fire"
-        
-    },
-    {
-    
-        "id": 6,
-        "nome" : "Charizard",
-        "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg"  ,
-        "type": "flying",
-        "type2": "fire"
+        "id": "",
+        "nome" : "",
+        "img": ""  ,
+        "types": " ",
+        "type": ""
     }
 ]
 

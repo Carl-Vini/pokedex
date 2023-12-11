@@ -1,6 +1,9 @@
 import Card from "./Components/Card";
 import styled from "styled-components";
 import CardTest from "./Components/Card/CardTest";
+import { completeList } from "./Components/Card/CompleteRequisição";
+import CardComplete from "./Components/Card/CardComplete";
+import Navbar from "./Components/Navbar";
 
 // import listaPokemon from "./Components/Card/listaPokemon";
 
@@ -8,6 +11,7 @@ import CardTest from "./Components/Card/CardTest";
 
 const HeaderContainer = styled.header`
   text-align: center;
+  
 `
 
 // const offset = 0;
@@ -21,15 +25,17 @@ const HeaderContainer = styled.header`
 // // .finally(() => console.log('requisição concluida'))
 
 // console.log(listaPokemon)
+console.log(completeList)
 
 function App() {
   return (
     <div className="App">
       <HeaderContainer >
-      <h1>Pokedex</h1>
-      <Card />
-      <CardTest />
+        <Navbar />
       </HeaderContainer>
+        {/* <Card />*/}
+        <CardComplete />
+        {/* <CardTest />  */}
     </div>
   );
 }

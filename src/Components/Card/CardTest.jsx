@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { listaPokemon } from "./listaPokemon";
+import {Pokemon } from "./pokemonModel";
 
 
 const ContainerStyled = styled.div`
@@ -108,15 +109,29 @@ const Type = styled.ol`
 
 function CardTest() {
 
+    const endPoints = [];
+    for (let i = 1; i <= (10); i++) {
+        endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+    }
+
     const [pokemon, setPokemon] = useState([]);
+    const [pkm, setPkm] = useState([])
+
 
     useEffect(() => {
-        listaPokemon.getPokemons()
-            .then((pokemons) => {
-                setPokemon(pokemons)
-            })
-        console.log(pokemon)
-    }, [])
+        axios.all(endPoints.map(endPoint => axios.get(endPoint)))
+        .then(resposta => setPokemon(resposta))
+        
+    }, [endPoints])
+ 
+ 
+    // const animals = new Pokemon()
+
+ 
+    
+       
+        // animals.name = pokemon.data.name
+   
 
     return (
         <ContainerStyled>
