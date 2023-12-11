@@ -1,20 +1,12 @@
-import styled from 'styled-components'
-import pokemons from "./pokemon.json"
-
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { listaPokemon } from "./listaPokemon";
 
 
 const ContainerStyled = styled.div`
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr;
-<<<<<<< HEAD
-    align-items: center;
-
-
-    h1 {
-        margin-bottom: 5px;
-        margin-top: 50px;
-=======
     text-align: center;
     background-color: #fff;
 
@@ -29,7 +21,6 @@ const ContainerStyled = styled.div`
         height: 100vh;
         width: 100vw;
         border-radius: 1.5rem;
->>>>>>> 660a79fa1a47b6c1fec4072e7a6f03721977f8e7
     }
 `
 
@@ -50,7 +41,7 @@ const Titulo = styled.h1`
 
 const CardStyled = styled.section`
     background-color: #14A06F;
-    width: 65%;
+    width: 75%;
     border-radius: 20px;
     margin: 0.3em;
     padding: 1.2em;
@@ -115,49 +106,36 @@ const Type = styled.ol`
 
 `
 
-// const offset = 0;
-// const limit = 10;
-// const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+function CardTest() {
 
+    const [pokemon, setPokemon] = useState([]);
 
-
-// console.log(listaPokemon)
-
-
-
-function Card() {
-        // const [dados, setDados] = useState([])
-
-        // useEffect(() => {
-        //     const fetchData = () => {
-        //         fetch(url)
-        //         .then(response => response.json)
-        //         .then(data => data.results)
-        //         .then(pokemons => setDados(pokemons))
-        //         .catch(error => console.log(error))
-        //     }
-        //     fetchData
-        // })
-   
+    useEffect(() => {
+        listaPokemon.getPokemons()
+            .then((pokemons) => {
+                setPokemon(pokemons)
+            })
+        console.log(pokemon)
+    }, [])
 
     return (
         <ContainerStyled>
             {
-                pokemons.map((pokemon) => (
-                    <CardStyled key={pokemon.id}>
-                        <Titulo> {pokemon.nome}  </Titulo>
+                pokemon.map((poke) => (
+                    <CardStyled key={poke.id}>
+                        <Titulo> {poke.name}  </Titulo>
                         <Type>
                             <li>
-                                {pokemon.type}
+                                {poke.name}
                             </li>
                             {
-                                pokemon.type2 &&   <li>
-                                {pokemon.type2}
-                            </li>
+                                poke.type2 && <li>
+                                    {poke.type2}
+                                </li>
                             }
-                          
+
                         </Type>
-                        <ImgPokemonStyled src={pokemon.img} alt={pokemon.nome} ></ImgPokemonStyled>
+                        <ImgPokemonStyled src={poke.img} alt={poke.name} ></ImgPokemonStyled>
                     </CardStyled>
                 ))
             }
@@ -165,4 +143,4 @@ function Card() {
     )
 }
 
-export default Card;
+export default CardTest;
