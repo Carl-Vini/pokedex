@@ -6,7 +6,7 @@ const Navbar = () => {
         width: 80vw;
 
         @media screen and (min-width:900px) {
-            width: 40%;
+            width: 30%;
     }
 
     `

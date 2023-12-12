@@ -7,19 +7,14 @@ const ContainerStyled = styled.div`
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr;
-<<<<<<< HEAD
     align-items: center;
-
 
     h1 {
         margin-bottom: 5px;
         margin-top: 50px;
-=======
-    text-align: center;
-    background-color: #fff;
-
-
- 
+        text-align: center;
+        background-color: #fff;
+    }
 
     @media screen and (min-width:900px) {
         max-width: 900px;
@@ -29,7 +24,6 @@ const ContainerStyled = styled.div`
         height: 100vh;
         width: 100vw;
         border-radius: 1.5rem;
->>>>>>> 660a79fa1a47b6c1fec4072e7a6f03721977f8e7
     }
 `
 
@@ -155,7 +149,6 @@ function Card() {
                                 {pokemon.type2}
                             </li>
                             }
-                          
                         </Type>
                         <ImgPokemonStyled src={pokemon.img} alt={pokemon.nome} ></ImgPokemonStyled>
                     </CardStyled>

@@ -9,13 +9,10 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   padding: 0;
-<<<<<<< HEAD
-  width: 100vw;
-  height: 100vh;  
+  width: 100%;
+  height:100%;   
   box-sizing: border-box;
-=======
   background-color: #f6f8fc;
->>>>>>> 660a79fa1a47b6c1fec4072e7a6f03721977f8e7
 }
 
 code {

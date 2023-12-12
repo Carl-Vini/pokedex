@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const ContainerButton = styled.div`
     text-align: center;
-    margin: 1em 0 1em 0em; 
+    max-width: 100%;
+
 
     @media screen and (min-width: 900px) {
-    
+        
     }
 `
 
@@ -22,15 +23,15 @@ const Botao = styled.button`
     
     
     @media screen and (min-width: 900px) {
-        width: 67.5vw;
+        width:65.5%;
         font-size: 14px;
         transition: 0.5s;
+        text-align: center;
+        margin: .5em auto .04em 5.5em;
         
 
         &:hover {
             background-color: #47a5f8;
-            
-            
         }
     }
 `

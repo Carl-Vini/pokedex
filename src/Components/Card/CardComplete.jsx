@@ -18,10 +18,11 @@ const ContainerStyled = styled.div`
 
     @media screen and (min-width:900px) {
         max-width: 900px;
-        margin: 1em auto;
+        margin: auto;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         text-align: center;
         border-radius: 1.5rem;
+        
     }
 `
 
@@ -59,8 +60,6 @@ const CardStyled = styled.section`
     height: 120px;
     box-sizing: content-box;
 
-  
-
     &.fire {
         background-color: #d11e48;
     }
@@ -76,6 +75,63 @@ const CardStyled = styled.section`
     &.bug {
         background-color: #5a2e2e;
     }
+
+    &.normal {
+        background-color: #a6a877;
+    }
+
+    &.electric {
+        background-color: #f7cf2e;
+    }
+
+    &.ice {
+        background-color: #98d5d7
+    }
+
+    &.ground {
+        background-color: #dfbf69;
+    }
+
+    &.flying {
+        background-color: #a98ff0;
+    }
+
+    &.poison {
+        background-color: #a040a0;
+    }
+
+    &.fighting {
+        background-color: #bf3029;
+    }
+
+    &.psychic {
+        background-color: #f65687;
+    }
+
+    &.dark {
+        background-color: #725847;
+    }
+
+    &.rock {
+        background-color: #b8a137;
+    }
+
+    &.ghost {
+        background-color: #6e5896;
+    }
+
+    &.steel {
+        background-color: #b9b7cf;
+    }
+
+    &.dragon {
+        background-color: #6f38f6;
+    }
+
+    &.fairy {
+        background-color: #f9aec7;
+    }
+
 
     @media screen and (min-width:900px) {
         height: auto;
@@ -120,21 +176,117 @@ const Type = styled.ol`
         border-radius: 20px;
         padding: 8px 15px 8px 15px;
         text-align: center;
+    
+
+    &.fire {
+        background-color: #d11e48;
+        filter: brightness(1.2);
     }
 
-    .fire {
-        background-color: #e84a5f;
-    }
-    .grass {
-        background-color: #c0cc39;
-    }  
-    .water{
-        background-color: #77cca4;
-    }
-    .bug {
-        background-color: #452c18;
+    &.grass {
+
+        background-color: #b4df37;
+        filter: brightness(1.2);
+        
     }
 
+    &.water {
+        background-color: #60f0c0;
+        filter: brightness(1.2);
+        
+    }
+
+    &.bug {
+        background-color: #5a2e2e;
+        filter: brightness(1.2);
+    }
+
+    &.normal {
+
+        background-color: #a6a877;
+        filter: brightness(1.2);
+        
+    }
+
+    &.electric {
+        background-color: #f7cf2e;
+        filter: brightness(1.2);
+        
+    }
+
+    &.ice {
+        background-color: #98d5d7;
+        filter:brightness(1.2);    
+    }
+
+    &.ground {
+
+        background-color: #dfbf69;
+        filter: brightness(1.2);
+        
+    }
+
+    &.flying {
+        background-color: #a98ff0;
+        filter: brightness(1.2);
+        
+    }
+
+    &.poison {
+        background-color: #a040a0;
+        filter: brightness(1.2);
+        
+    }
+
+    &.fighting {
+        background-color: #bf3029;
+        filter: brightness(1.2);
+        
+    }
+
+    &.psychic {
+        background-color: #f65687;
+        filter: brightness(1.2);
+        
+    }
+
+    &.dark {
+        background-color: #725847;
+        filter: brightness(1.2);
+    }
+
+    &.rock {
+ 
+        background-color: #b8a137;
+        filter: brightness(1.2);
+    }
+
+    &.ghost {
+
+        background-color: #6e5896;
+        filter: brightness(1.2);
+        
+    }
+
+    &.steel {
+        background-color: #b9b7cf;
+        filter: brightness(1.2);
+        
+    }
+
+    &.dragon {
+        background-color: #6f38f6;
+        filter: brightness(1.2);
+        
+    }
+
+    &.fairy {
+        background-color: #f9aec7;
+        filter: brightness(1.2);
+        
+    }
+
+}
     @media screen and (min-width: 900px) {
         flex-direction: row;   
     }
@@ -176,7 +328,7 @@ function CardComplete(props) {
         // axios.get(http)
         // .then((res) => setPokemonDetail(res.data.results))
         // console.log(endPoints)
-      
+
     }, [endPoints])
 
 
@@ -195,7 +347,7 @@ function CardComplete(props) {
         if (botaoRenderizado === false) {
             setBotaoRenderizado(true)
         }
-    },[mostrarMais])
+    }, [mostrarMais])
 
 
     return (
@@ -210,7 +362,7 @@ function CardComplete(props) {
                                     {poke.data.types[0].type.name}
                                 </li>
                                 {
-                                    poke.data.types[1] && <li className={poke.data.types[0].type.name}>
+                                    poke.data.types[1] && <li className={poke.data.types[1].type.name}>
                                         {poke.data.types[1].type.name}
                                     </li>
                                 }
