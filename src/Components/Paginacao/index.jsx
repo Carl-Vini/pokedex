@@ -23,7 +23,7 @@ const Botao = styled.button`
     
     
     @media screen and (min-width: 900px) {
-        width:65.5%;
+        width:65.3%;
         font-size: 14px;
         transition: 0.5s;
         text-align: center;
