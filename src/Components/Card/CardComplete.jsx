@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import styled from "styled-components";
-import pokemon from "./pokemon.json"
-import { Pokemon } from "./pokemonModel";
+import Paginacao from "../Paginacao";
 
 
-const offset = 0;
-const limit = 12;
-const http = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+// const offset = 0;
+let limit = 12;
+// const http = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
 
 const ContainerStyled = styled.div`
@@ -17,16 +16,11 @@ const ContainerStyled = styled.div`
     text-align: center;
     background-color: #fff;
 
-
- 
-
     @media screen and (min-width:900px) {
         max-width: 900px;
         margin: 1em auto;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         text-align: center;
-        height: 100vh;
-        width: 100vw;
         border-radius: 1.5rem;
     }
 `
@@ -82,6 +76,7 @@ const CardStyled = styled.section`
     &.bug {
         background-color: #5a2e2e;
     }
+
     @media screen and (min-width:900px) {
         height: auto;
         width: 13vw;
@@ -104,7 +99,6 @@ const ImgPokemonStyled = styled.img`
     right: -10px;
 
     @media screen and (min-width:900px) {
-
         height: 15vh;
         top: 0px;
         right: 28px;
@@ -142,22 +136,24 @@ const Type = styled.ol`
     }
 
     @media screen and (min-width: 900px) {
-        flex-direction: row;
-              
+        flex-direction: row;   
     }
 
 `
 
-function CardComplete() {
+function CardComplete(props) {
 
     // const [pokemon, setPokemon] = useState([])
     const [pokemonDetail, setPokemonDetail] = useState([])
+    const [mostrarMaisPokemons, setMostrarMaisPokemons] = useState(limit);
+    const [botaoRenderizado, setBotaoRenderizado] = useState(true)
+
 
     const endPoints = [];
 
- 
 
-    for(let i = 1; i <= (limit); i++) {
+
+    for (let i = 1; i <= (limit); i++) {
         endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
     }
 
@@ -170,47 +166,66 @@ function CardComplete() {
 
     // }, [])
 
-     useEffect(() => {
+    useEffect(() => {
         //  pokemon?.map((requi) => fetch(requi.url)
         //  .then(response => response.json()))
         // .then(requisitions => Promise.all(requisitions))
-
-        
-        
         axios.all(endPoints.map(endPoint => axios.get(endPoint)))
-        .then(res => setPokemonDetail(res))
+            .then(res => setPokemonDetail(res))
 
         // axios.get(http)
         // .then((res) => setPokemonDetail(res.data.results))
         // console.log(endPoints)
-
-     }, [])
-
-   
+      
+    }, [endPoints])
 
 
-     
+    const mostrarMais = () => {
+        limit += 12;
+        setMostrarMaisPokemons(limit);
+        for (let i = 1; i <= (mostrarMaisPokemons); i++) {
+            endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        }
+        setBotaoRenderizado(false)
+        console.log(endPoints)
+    }
+
+
+    useEffect(() => {
+        if (botaoRenderizado === false) {
+            setBotaoRenderizado(true)
+        }
+    },[mostrarMais])
+
+
     return (
-        <ContainerStyled>
-            {
-                pokemonDetail.map((poke) => (
-                    <CardStyled key={poke.data.id} className={poke.data.types[0].type.name}>
-                        <Titulo > {poke.data.name}  </Titulo>
-                        <Type >
-                            <li className={poke.data.types[0].type.name}>
-                                { poke.data.types[0].type.name }
-                            </li>
-                            {
-                                poke.data.types[1] && <li className={poke.data.types[0].type.name}>
-                                    {poke.data.types[1].type.name}
+        <>
+            <ContainerStyled>
+                {
+                    pokemonDetail.map((poke) => (
+                        <CardStyled key={poke.data.id} className={poke.data.types[0].type.name} id={poke.data.id}>
+                            <Titulo > {poke.data.name}  </Titulo>
+                            <Type >
+                                <li className={poke.data.types[0].type.name}>
+                                    {poke.data.types[0].type.name}
                                 </li>
-                            }
-                        </Type >
-                        <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.data.name} ></ImgPokemonStyled>
-                    </CardStyled>
-                ))
+                                {
+                                    poke.data.types[1] && <li className={poke.data.types[0].type.name}>
+                                        {poke.data.types[1].type.name}
+                                    </li>
+                                }
+                            </Type >
+                            <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.data.name} ></ImgPokemonStyled>
+                        </CardStyled>
+                    ))
+                }
+
+            </ContainerStyled>
+            {
+                botaoRenderizado && <Paginacao showMore={mostrarMais} />
             }
-        </ContainerStyled>
+
+        </>
     )
 }
 
