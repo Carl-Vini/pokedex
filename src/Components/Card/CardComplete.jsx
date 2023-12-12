@@ -6,6 +6,7 @@ import Paginacao from "../Paginacao";
 
 // const offset = 0;
 let limit = 12;
+const firstGeneration = 151;
 // const http = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
 
@@ -262,22 +263,18 @@ const Type = styled.ol`
     }
 
     &.ghost {
-
         background-color: #6e5896;
         filter: brightness(1.2);
-        
     }
 
     &.steel {
         background-color: #b9b7cf;
         filter: brightness(1.2);
-        
     }
 
     &.dragon {
         background-color: #6f38f6;
         filter: brightness(1.2);
-        
     }
 
     &.fairy {
@@ -338,16 +335,18 @@ function CardComplete(props) {
         for (let i = 1; i <= (mostrarMaisPokemons); i++) {
             endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         }
-        setBotaoRenderizado(false)
+
+        if (limit >= firstGeneration) {
+            limit = 151
+            setBotaoRenderizado(false)
+        };
+        
+        
         console.log(endPoints)
     }
 
 
-    useEffect(() => {
-        if (botaoRenderizado === false) {
-            setBotaoRenderizado(true)
-        }
-    }, [mostrarMais])
+   
 
 
     return (
