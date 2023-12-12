@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import styled from "styled-components";
-import pokemon from "./pokemon.json"
-import { Pokemon } from "./pokemonModel";
+import Paginacao from "../Paginacao";
 
 
-const offset = 0;
-const limit = 12;
-const http = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+// const offset = 0;
+let limit = 12;
+// const http = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
 
 const ContainerStyled = styled.div`
@@ -148,16 +147,27 @@ const Type = styled.ol`
 
 `
 
-function CardComplete() {
+function CardComplete(props) {
 
     // const [pokemon, setPokemon] = useState([])
     const [pokemonDetail, setPokemonDetail] = useState([])
+    const [mostrarMaisPokemons, setMostrarMaisPokemons] = useState(limit);
+
+
 
     const endPoints = [];
 
- 
+    const mostrarMais = () => {
+        limit += 12;
+        setMostrarMaisPokemons(limit);
+        for (let i = 1; i <= (mostrarMaisPokemons); i++) {
+            endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        }
+        console.log(endPoints)
+    }
 
-    for(let i = 1; i <= (limit); i++) {
+
+    for (let i = 1; i <= (limit); i++) {
         endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
     }
 
@@ -170,47 +180,52 @@ function CardComplete() {
 
     // }, [])
 
-     useEffect(() => {
+    useEffect(() => {
         //  pokemon?.map((requi) => fetch(requi.url)
         //  .then(response => response.json()))
         // .then(requisitions => Promise.all(requisitions))
 
-        
-        
+
+
         axios.all(endPoints.map(endPoint => axios.get(endPoint)))
-        .then(res => setPokemonDetail(res))
+            .then(res => setPokemonDetail(res))
 
         // axios.get(http)
         // .then((res) => setPokemonDetail(res.data.results))
         // console.log(endPoints)
 
-     }, [])
-
-   
+    }, [endPoints])
 
 
-     
+
+
+
     return (
-        <ContainerStyled>
-            {
-                pokemonDetail.map((poke) => (
-                    <CardStyled key={poke.data.id} className={poke.data.types[0].type.name}>
-                        <Titulo > {poke.data.name}  </Titulo>
-                        <Type >
-                            <li className={poke.data.types[0].type.name}>
-                                { poke.data.types[0].type.name }
-                            </li>
-                            {
-                                poke.data.types[1] && <li className={poke.data.types[0].type.name}>
-                                    {poke.data.types[1].type.name}
+        <>
+
+
+            <ContainerStyled>
+                {
+                    pokemonDetail.map((poke) => (
+                        <CardStyled key={poke.data.id} className={poke.data.types[0].type.name}>
+                            <Titulo > {poke.data.name}  </Titulo>
+                            <Type >
+                                <li className={poke.data.types[0].type.name}>
+                                    {poke.data.types[0].type.name}
                                 </li>
-                            }
-                        </Type >
-                        <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.data.name} ></ImgPokemonStyled>
-                    </CardStyled>
-                ))
-            }
-        </ContainerStyled>
+                                {
+                                    poke.data.types[1] && <li className={poke.data.types[0].type.name}>
+                                        {poke.data.types[1].type.name}
+                                    </li>
+                                }
+                            </Type >
+                            <ImgPokemonStyled src={poke.data.sprites.front_default} alt={poke.data.name} ></ImgPokemonStyled>
+                        </CardStyled>
+                    ))
+                }
+            </ContainerStyled>
+            <Paginacao showMore={mostrarMais} />
+        </>
     )
 }
 
